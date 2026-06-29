@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Фонд «Среда Возможностей» — объединяем людей, ресурсы и экспертизу</title>
+<meta name="description" content="Фонд поддержки социально-культурных инициатив и бизнес-проектов. Мы не делаем разовые акции — мы строим устойчивые проекты." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+</head>
+<body>
+
+<a href="../" class="ver-switch" title="Другая концепция">◑ Альтернатива: золотая версия</a>
+<span class="proto-badge">прототип · восстановленная версия 2.0</span>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#hero" class="brand">
+    <span class="brand__mark">
+      <svg viewBox="0 0 48 48" class="spiral" aria-hidden="true">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#8fc0ff"/><stop offset="1" stop-color="#5fe0e8"/></linearGradient></defs>
+        <path d="M24 24 m0 -17 a17 17 0 1 1 -0.1 0 M24 24 m0 -11 a11 11 0 1 0 0.1 0 M24 24 m0 -5 a5 5 0 1 1 -0.1 0"
+              fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="24" cy="24" r="2.6" fill="#8fc0ff"/>
+      </svg>
+    </span>
+    <span class="brand__txt">Среда<span>Возможностей</span></span>
+  </a>
+  <nav class="nav__links" id="navLinks">
+    <a href="#about">О фонде</a>
+    <a href="#whom">Кому подойдёт</a>
+    <a href="#directions">Направления</a>
+    <a href="#projects">Проекты</a>
+    <a href="#calc">Вклад добра</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <div class="nav__actions">
+    <a href="#support" class="btn btn--accent">Поддержать фонд</a>
+    <button class="nav__burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="collider" class="hero__canvas"></canvas>
+  <div class="hero__glow hero__glow--1"></div>
+  <div class="hero__glow hero__glow--2"></div>
+  <div class="hero__inner">
+    <div class="hero__tag reveal">Фонд «Среда Возможностей»</div>
+    <h1 class="hero__title reveal">Объединяем людей, ресурсы и экспертизу,<br>чтобы создавать <span class="it">устойчивые</span> проекты</h1>
+    <p class="hero__lead reveal">Фонд поддержки социально-культурных инициатив и бизнес-проектов.
+       Мы не делаем разовые акции — мы строим то, что продолжает развиваться.</p>
+    <div class="hero__cta reveal">
+      <a href="#support" class="btn btn--accent">Поддержать фонд</a>
+      <a href="#about" class="btn btn--outline">О фонде</a>
+    </div>
+    <div class="hero__teasers reveal">
+      <div class="teaser"><b>Кто меняет мир?</b><span>Лидеры, объединяющие ресурсы ради устойчивых изменений.</span></div>
+      <div class="teaser"><b>Что такое сообщество?</b><span>Среда, где каждый вклад усиливается экспертизой и связями.</span></div>
+      <div class="teaser"><b>Что делает фонд?</b><span>Системная поддержка культуры, общества и бизнеса.</span></div>
+    </div>
+  </div>
+  <a href="#stats" class="hero__scroll" aria-label="Вниз"><span></span></a>
+</section>
+
+<!-- STATS -->
+<section class="section stats" id="stats">
+  <div class="section__head reveal center">
+    <span class="eyebrow">Наши результаты</span>
+    <h2>Цифры, которые <span class="it">говорят</span></h2>
+  </div>
+  <div class="stats__grid reveal">
+    <div class="stat"><b data-count="9">0</b><span>активных проектов</span></div>
+    <div class="stat"><b data-count="15000" data-suffix="+">0</b><span>участников и благополучателей</span></div>
+    <div class="stat"><b data-count="25" data-suffix="+">0</b><span>регионов и стран</span></div>
+    <div class="stat"><b data-count="120" data-suffix="+">0</b><span>партнёров и экспертов</span></div>
+    <div class="stat"><b data-count="90" data-suffix="%">0</b><span>проектов продолжают развитие</span></div>
+  </div>
+  <blockquote class="quote reveal">
+    «Мы не делаем разовые акции — мы строим <span class="it">устойчивые</span> проекты»
+    <cite>Анастасия Митькина — президент фонда</cite>
+  </blockquote>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="about__grid">
+    <div class="reveal">
+      <span class="eyebrow">О фонде</span>
+      <h2>Кто мы и зачем мы <span class="it">здесь</span></h2>
+    </div>
+    <div class="reveal">
+      <p class="lead">Фонд поддержки социально-культурных инициатив и бизнес-проектов создан с убеждением,
+         что сила общества — в объединении. Мы верим, что каждый человек и организация способны изменить
+         мир вокруг себя, если дать им правильные инструменты и окружение.</p>
+      <div class="vm">
+        <div><h4>Видение</h4><p>Мир, где социальная ответственность — норма, а бизнес, культура и общество
+          действуют в гармонии, создавая устойчивые изменения для будущих поколений.</p></div>
+        <div><h4>Миссия</h4><p>Объединять ресурсы, идеи и людей для проектов, которые приносят
+          долгосрочную пользу обществу и формируют культуру созидания.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHOM -->
+<section class="section whom" id="whom">
+  <div class="section__head reveal"><span class="eyebrow">Кому подойдёт</span><h2>Кому подойдёт <span class="it">фонд</span></h2></div>
+  <div class="whom__list">
+    <div class="whom__row reveal"><span class="whom__n">01</span><div><h3>Авторам проектов</h3><p>Помогаем с запуском, партнёрами, экспертизой и ресурсами.</p></div></div>
+    <div class="whom__row reveal"><span class="whom__n">02</span><div><h3>Бизнесу и компаниям</h3><p>Репутационное усиление и участие в значимых проектах.</p></div></div>
+    <div class="whom__row reveal"><span class="whom__n">03</span><div><h3>Инвесторам и меценатам</h3><p>Безопасная точка входа в проверенные социальные и культурные инициативы.</p></div></div>
+    <div class="whom__row reveal"><span class="whom__n">04</span><div><h3>Экспертам и командам</h3><p>Возможность влиять, развиваться и быть частью сильных проектов.</p></div></div>
+  </div>
+</section>
+
+<!-- DIRECTIONS -->
+<section class="section directions" id="directions">
+  <div class="section__head reveal center">
+    <span class="eyebrow">Направления фонда</span>
+    <h2>Что мы <span class="it">поддерживаем</span></h2>
+    <p class="section__sub">Проекты на стыке смысла, пользы и устойчивости.</p>
+  </div>
+  <div class="cards">
+    <article class="card reveal"><div class="card__ic">◇</div><h3>Социальные инициативы</h3><p>Реабилитационные программы, поддержка сообществ, развитие социальной инфраструктуры.</p></article>
+    <article class="card reveal"><div class="card__ic">❖</div><h3>Культура и образование</h3><p>Выставки, фестивали, образовательные лаборатории, менторство и развитие талантов.</p></article>
+    <article class="card reveal"><div class="card__ic">⟁</div><h3>Бизнес и предпринимательство</h3><p>Интеграция бизнес-ресурсов и общественной пользы, ESG-стратегии.</p></article>
+    <article class="card reveal"><div class="card__ic">✦</div><h3>Междисциплинарные проекты</h3><p>Межрегиональные и международные инициативы, кросс-функциональные программы.</p></article>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section projects" id="projects">
+  <div class="section__head reveal center"><span class="eyebrow">Проекты экосистемы</span><h2>Наши <span class="it">проекты</span></h2></div>
+  <div class="proj-grid reveal">
+    <div class="proj"><span>✦</span><b>Творческий фестиваль</b><small>Поддержка молодых художников</small></div>
+    <div class="proj"><span>⚽</span><b>Футбольный турнир</b><small>Спортивные события для семей</small></div>
+    <div class="proj"><span>☯</span><b>Фестиваль развития</b><small>Гармония тела и творчества</small></div>
+    <div class="proj"><span>◎</span><b>Конференция</b><small>Смыслы, лидеры, нетворкинг</small></div>
+    <div class="proj"><span>♪</span><b>Песни и сказания</b><small>Авторская и народная культура</small></div>
+    <div class="proj"><span>⛩</span><b>Культурное наследие</b><small>Сохранение традиций народов</small></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section team" id="team">
+  <div class="section__head reveal center"><span class="eyebrow">Лидеры изменений</span><h2>Наша <span class="it">команда</span></h2></div>
+  <div class="team__grid reveal">
+    <figure class="member"><div class="member__ph">АМ</div><b>Анастасия Митькина</b><span>Президент фонда</span></figure>
+    <figure class="member"><div class="member__ph">ДМ</div><b>Дмитрий Митькин</b><span>Вице-президент, предприниматель</span></figure>
+    <figure class="member"><div class="member__ph">АБ</div><b>Антон Бурдаков</b><span>Председатель совета директоров</span></figure>
+    <figure class="member"><div class="member__ph">+9</div><b>Команда добра</b><span>Эксперты, кураторы, волонтёры</span></figure>
+  </div>
+</section>
+
+<!-- SUPPORT / КНОПКА ДОБРА (новое) -->
+<section class="section dobro" id="support">
+  <div class="dobro__wrap reveal">
+    <div class="dobro__left">
+      <span class="eyebrow eyebrow--new">Новое · 2.0</span>
+      <h2>Кнопка <span class="it">добра</span></h2>
+      <p>Поддержать фонд — это один клик, а не квест с реквизитами. Прямая ссылка: прошёл и перевёл.
+         Разово или ежемесячно — на ваш выбор.</p>
+      <div class="amounts" id="amounts">
+        <button class="amount">300 ₽</button>
+        <button class="amount amount--on">1 000 ₽</button>
+        <button class="amount">5 000 ₽</button>
+        <button class="amount">Своя сумма</button>
+      </div>
+      <label class="switch"><input type="checkbox" id="monthly"><span class="switch__t"></span>Делать вклад ежемесячно</label>
+      <div class="dobro__btns">
+        <a href="#" class="btn btn--accent" id="payBtn">Перевести 1 000 ₽</a>
+        <a href="https://t.me/FondMitkina" class="btn btn--outline" target="_blank" rel="noopener">Канал в Telegram</a>
+      </div>
+      <p class="dobro__note">В прототипе оплата отключена. На проде — платёжная ссылка банка / эквайринг + СБП.</p>
+    </div>
+    <div class="dobro__right">
+      <div class="pulse"><div class="pulse__ring"></div><div class="pulse__ring"></div><div class="pulse__ring"></div><div class="pulse__core">✦</div></div>
+      <p class="dobro__caption">Ваш вклад идёт в конкретный проект — и попадает в отчётность.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CALC (новое) -->
+<section class="section calc" id="calc">
+  <div class="section__head reveal center">
+    <span class="eyebrow eyebrow--new">Новое · 2.0</span>
+    <h2>Твой процент вклада <span class="it">добра</span> в мир</h2>
+    <p class="section__sub">Опишите доброе дело — деньгами или своими ресурсами. Система оценит вклад
+       и присвоит рейтинг социальной ответственности.</p>
+  </div>
+  <div class="calc__panel reveal">
+    <div class="calc__in">
+      <label>Что доброго вы сделали?</label>
+      <textarea id="deedText" rows="3" placeholder="Например: помог провести фестиваль и оплатил реабилитацию ребёнку"></textarea>
+      <div class="calc__row">
+        <div class="calc__field"><label>Вклад деньгами, ₽ <small>(если есть)</small></label>
+          <input type="number" id="deedSum" min="0" step="1000" placeholder="50 000" /></div>
+        <button class="btn btn--accent" id="calcBtn">Рассчитать вклад</button>
+      </div>
+      <p class="calc__note">Демо-расчёт по упрощённой модели (привязка к РФ). На проде — ИИ-оценка с защитой от накруток.</p>
+    </div>
+    <div class="calc__out" id="calcOut" aria-live="polite">
+      <div class="calc__placeholder"><div class="calc__big">0.0000<span>%</span></div>
+        <p>Ваш персональный индекс добра появится здесь</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section partners" id="partners">
+  <div class="partners__grid">
+    <div class="reveal">
+      <span class="eyebrow">Партнёрам</span>
+      <h2>Создавайте перемены <span class="it">вместе с нами</span></h2>
+      <p>Сотрудничество с фондом — это возможность соединить бизнес-цели с общественной пользой
+         и оставить значимый след.</p>
+      <div class="dobro__btns">
+        <a href="#submit" class="btn btn--accent">Обсудить партнёрство →</a>
+        <a href="#submit" class="btn btn--outline">Подать проект</a>
+      </div>
+    </div>
+    <ul class="benefits reveal">
+      <li><b>Репутационный эффект</b><span>Укрепление имиджа через ассоциацию с социально значимыми проектами.</span></li>
+      <li><b>Социальное воздействие</b><span>Прямое участие в изменениях, улучшающих жизнь тысяч людей.</span></li>
+      <li><b>Доступ к сообществу</b><span>Сеть экспертов, партнёров и инициаторов для совместных проектов.</span></li>
+      <li><b>Гибкие форматы</b><span>От разовой поддержки до стратегического партнёрства.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SUBMIT -->
+<section class="section submit" id="submit">
+  <div class="section__head reveal center"><span class="eyebrow">Участникам</span><h2>Подайте свой <span class="it">проект</span></h2>
+    <p class="section__sub">Поддерживаем инициативы в сфере культуры, образования, социального предпринимательства и международного сотрудничества.</p></div>
+  <div class="steps reveal">
+    <div class="step"><b>01</b><h4>Заявка</h4><p>Заполните форму с описанием проекта.</p></div>
+    <div class="step"><b>02</b><h4>Экспертиза</h4><p>Наши эксперты оценят инициативу.</p></div>
+    <div class="step"><b>03</b><h4>Согласование</h4><p>Обсуждаем детали и план.</p></div>
+    <div class="step"><b>04</b><h4>Запуск</h4><p>Начинаем при поддержке фонда.</p></div>
+  </div>
+  <form class="lead-form reveal" onsubmit="return false">
+    <div class="lf-row"><input type="text" placeholder="Ваше имя *" /><input type="email" placeholder="email@example.com *" /></div>
+    <input type="text" placeholder="Направление проекта" />
+    <textarea rows="3" placeholder="Коротко о вашем проекте"></textarea>
+    <button class="btn btn--accent" id="formBtn">Отправить заявку</button>
+    <span class="lf-note">Демо-форма прототипа.</span>
+  </form>
+</section>
+
+<!-- CONTACTS -->
+<section class="section contacts" id="contacts">
+  <div class="section__head reveal"><span class="eyebrow">Контакты</span><h2>Свяжитесь с <span class="it">нами</span></h2>
+    <p class="section__sub">Мы всегда открыты для вопросов, предложений и сотрудничества.</p></div>
+  <div class="contacts__grid reveal">
+    <a href="mailto:Mfondom@yandex.ru" class="contact"><span>Email</span><b>Mfondom@yandex.ru</b></a>
+    <a href="tel:+79175688899" class="contact"><span>Телефон</span><b>+7 (917) 568-88-99</b></a>
+    <div class="contact"><span>Адрес</span><b>г. Москва</b></div>
+    <a href="https://t.me/FondMitkina" target="_blank" rel="noopener" class="contact"><span>Telegram</span><b>@FondMitkina</b></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <div class="brand brand--lg">
+        <span class="brand__mark"><svg viewBox="0 0 48 48" class="spiral"><path d="M24 24 m0 -17 a17 17 0 1 1 -0.1 0 M24 24 m0 -11 a11 11 0 1 0 0.1 0 M24 24 m0 -5 a5 5 0 1 1 -0.1 0" fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round"/><circle cx="24" cy="24" r="2.6" fill="#8fc0ff"/></svg></span>
+        <span class="brand__txt">Среда<span>Возможностей</span></span>
+      </div>
+      <p>Объединяем людей и ресурсы для создания проектов, которые меняют жизнь к лучшему.</p>
+      <div class="socials"><a href="https://t.me/FondMitkina" target="_blank" rel="noopener">TG</a><a href="#">VK</a><a href="#">MAX</a></div>
+    </div>
+    <div class="footer__col"><h4>Навигация</h4><a href="#about">О фонде</a><a href="#directions">Направления</a><a href="#projects">Проекты</a><a href="#partners">Партнёрам</a><a href="#contacts">Контакты</a></div>
+    <div class="footer__col"><h4>Контакты</h4><a href="mailto:Mfondom@yandex.ru">Mfondom@yandex.ru</a><a href="tel:+79175688899">+7 (917) 568-88-99</a><span>г. Москва</span></div>
+  </div>
+  <div class="footer__bottom">
+    <span>© 2026 Фонд поддержки социально-культурных инициатив и бизнес-проектов.</span>
+    <span>Сделано с ♡ для людей · прототип</span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
