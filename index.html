@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Коллайдер добра — фонд «Среда Возможностей»</title>
+<meta name="description" content="Системная благотворительность нового поколения. Не давление на жалость, а инфраструктура добра: прозрачность, масштаб и измеримый вклад." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+</head>
+<body>
+
+<!-- бейдж прототипа -->
+<a href="#" class="proto-badge">прототип · концепт</a>
+
+<!-- курсор-свечение -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- ХЕДЕР -->
+<header class="nav" id="nav">
+  <a href="#hero" class="brand">
+    <span class="brand__mark">
+      <svg viewBox="0 0 48 48" class="spiral" aria-hidden="true">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f0c46a"/><stop offset="1" stop-color="#6fe3e8"/>
+          </linearGradient>
+        </defs>
+        <path d="M24 24 m0 -17 a17 17 0 1 1 -0.1 0 M24 24 m0 -11 a11 11 0 1 0 0.1 0 M24 24 m0 -5 a5 5 0 1 1 -0.1 0"
+              fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="24" cy="24" r="2.6" fill="#f0c46a"/>
+      </svg>
+    </span>
+    <span class="brand__txt">Коллайдер<span>добра</span></span>
+  </a>
+  <nav class="nav__links" id="navLinks">
+    <a href="#manifest">Подход</a>
+    <a href="#directions">Направления</a>
+    <a href="#calc">Вклад добра</a>
+    <a href="#partners">Партнёрам</a>
+    <a href="#transparency">Отчётность</a>
+  </nav>
+  <div class="nav__actions">
+    <a href="#donate" class="btn btn--ghost">Помочь</a>
+    <button class="nav__burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ГЕРОЙ -->
+<section class="hero" id="hero">
+  <canvas id="collider" class="hero__canvas"></canvas>
+  <div class="hero__glow hero__glow--1"></div>
+  <div class="hero__glow hero__glow--2"></div>
+  <div class="hero__inner">
+    <div class="hero__tag reveal">Международный благотворительный фонд «Среда Возможностей»</div>
+    <h1 class="hero__title reveal">
+      Не фонд жалости.<br><span class="grad">Коллайдер добра.</span>
+    </h1>
+    <p class="hero__lead reveal">
+      Мы собираем людей, ресурсы и смыслы в одной точке — и превращаем их
+      в системные, измеримые добрые дела. Без давления на эмоции. С прозрачностью уровня корпорации.
+    </p>
+    <div class="hero__cta reveal">
+      <a href="#donate" class="btn btn--gold">Помочь фонду</a>
+      <a href="#partners" class="btn btn--outline">Стать партнёром</a>
+      <a href="#help" class="btn btn--text">Получить помощь →</a>
+    </div>
+    <div class="hero__stats reveal">
+      <div class="stat"><b data-count="5">0</b><span>лет системной работы</span></div>
+      <div class="stat"><b data-count="12">0</b><span>человек в команде добра</span></div>
+      <div class="stat"><b data-count="100" data-suffix="%">0</b><span>прозрачная отчётность</span></div>
+    </div>
+  </div>
+  <a href="#manifest" class="hero__scroll" aria-label="Вниз"><span></span></a>
+</section>
+
+<!-- МАНИФЕСТ -->
+<section class="section manifest" id="manifest">
+  <div class="section__head reveal">
+    <span class="eyebrow">Подход</span>
+    <h2>Добро как инфраструктура, а не как боль</h2>
+    <p class="section__sub">
+      Большинство фондов давят на жалость трагичными кадрами — «25-й кадр» ради импульсивного перевода.
+      Мы выбрали другой путь: смыслы, которые понимает зрелый, состоявшийся человек.
+    </p>
+  </div>
+  <div class="cards">
+    <article class="card reveal">
+      <div class="card__ic">✦</div>
+      <h3>Смыслы вместо жалости</h3>
+      <p>Никаких манипуляций эмоциями. Каждая фраза — про систему и результат, а не про чужую беду на витрине.</p>
+    </article>
+    <article class="card reveal">
+      <div class="card__ic">◈</div>
+      <h3>Прозрачность как стандарт</h3>
+      <p>Отчётность за 5 лет, подтверждения расходов, документы — открыто. Доверие строится на цифрах, а не на обещаниях.</p>
+    </article>
+    <article class="card reveal">
+      <div class="card__ic">⟁</div>
+      <h3>Масштаб и перспектива</h3>
+      <p>Мы строим не разовые акции, а холдинг добра: несколько направлений, партнёрства с бизнесом, импакт на годы вперёд.</p>
+    </article>
+    <article class="card reveal">
+      <div class="card__ic">❖</div>
+      <h3>Сообщество, а не толпа</h3>
+      <p>Доноры и партнёры — это клуб ответственных людей со своим рейтингом, кабинетом и закрытым каналом.</p>
+    </article>
+  </div>
+</section>
+
+<!-- НАПРАВЛЕНИЯ -->
+<section class="section directions" id="directions">
+  <div class="section__head reveal">
+    <span class="eyebrow">Кому помогаем</span>
+    <h2>Выберите направление — и проваливайтесь внутрь</h2>
+    <p class="section__sub">Каждое направление — это живая презентация проектов с возможностью помочь в один клик.</p>
+  </div>
+  <div class="dir-grid">
+    <a href="#donate" class="dir reveal" style="--img:linear-gradient(135deg,#1a2030,#0d1a22)">
+      <div class="dir__top"><span class="dir__num">01</span><span class="dir__arrow">↗</span></div>
+      <h3>Дети и здоровье</h3>
+      <p>Реабилитация, лечение, развитие — адресно и под контролем.</p>
+      <div class="dir__bar"><i style="width:72%"></i></div>
+      <span class="dir__meta">сейчас в работе · 4 проекта</span>
+    </a>
+    <a href="#donate" class="dir reveal" style="--img:linear-gradient(135deg,#231a2e,#15101f)">
+      <div class="dir__top"><span class="dir__num">02</span><span class="dir__arrow">↗</span></div>
+      <h3>Культура и искусство</h3>
+      <p>Фестивали и события, которые объединяют и финансируют добро.</p>
+      <div class="dir__bar"><i style="width:58%"></i></div>
+      <span class="dir__meta">Union Art · сезон 2026</span>
+    </a>
+    <a href="#donate" class="dir reveal" style="--img:linear-gradient(135deg,#1a2a24,#0d1812)">
+      <div class="dir__top"><span class="dir__num">03</span><span class="dir__arrow">↗</span></div>
+      <h3>Особые возможности</h3>
+      <p>Поддержка людей с инвалидностью — без жалости, с достоинством.</p>
+      <div class="dir__bar"><i style="width:64%"></i></div>
+      <span class="dir__meta">программа сопровождения</span>
+    </a>
+    <a href="#donate" class="dir reveal" style="--img:linear-gradient(135deg,#2a241a,#181206)">
+      <div class="dir__top"><span class="dir__num">04</span><span class="dir__arrow">↗</span></div>
+      <h3>Семья и сообщество</h3>
+      <p>Спортивные и семейные инициативы, объединяющие тысячи людей.</p>
+      <div class="dir__bar"><i style="width:81%"></i></div>
+      <span class="dir__meta">велозабег · 2000+ участников</span>
+    </a>
+  </div>
+</section>
+
+<!-- КНОПКА ДОБРА -->
+<section class="section dobro" id="donate">
+  <div class="dobro__wrap reveal">
+    <div class="dobro__left">
+      <span class="eyebrow">Кнопка добра</span>
+      <h2>Помочь — это один клик, а не квест</h2>
+      <p>Раньше — только QR и реквизиты. Теперь — прямая ссылка: прошёл и перевёл.
+         Выберите сумму или поддержите фонд ежемесячно.</p>
+      <div class="amounts" id="amounts">
+        <button class="amount">300 ₽</button>
+        <button class="amount amount--on">1 000 ₽</button>
+        <button class="amount">5 000 ₽</button>
+        <button class="amount">Своя сумма</button>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="monthly"><span class="switch__t"></span>
+        Делать вклад ежемесячно
+      </label>
+      <div class="dobro__btns">
+        <a href="#" class="btn btn--gold" id="payBtn">Перевести 1 000 ₽</a>
+        <a href="https://t.me/FondMitkina" class="btn btn--outline" target="_blank" rel="noopener">Канал фонда в Telegram</a>
+      </div>
+      <p class="dobro__note">В прототипе оплата отключена. На проде — платёжная ссылка банка / эквайринг + СБП.</p>
+    </div>
+    <div class="dobro__right">
+      <div class="pulse">
+        <div class="pulse__ring"></div><div class="pulse__ring"></div><div class="pulse__ring"></div>
+        <div class="pulse__core">✦</div>
+      </div>
+      <p class="dobro__caption">Ваш вклад идёт в конкретный проект — и попадает в отчётность.</p>
+    </div>
+  </div>
+</section>
+
+<!-- КАЛЬКУЛЯТОР ВКЛАДА ДОБРА -->
+<section class="section calc" id="calc">
+  <div class="section__head reveal">
+    <span class="eyebrow">Фишка фонда</span>
+    <h2>Твой процент вклада добра в мир</h2>
+    <p class="section__sub">
+      Опишите доброе дело — деньгами или своими ресурсами. Система оценит ваш вклад,
+      присвоит рейтинг социальной ответственности и место в сообществе.
+    </p>
+  </div>
+  <div class="calc__panel reveal">
+    <div class="calc__in">
+      <label>Что доброго вы сделали?</label>
+      <textarea id="deedText" rows="3" placeholder="Например: помог построить детскую площадку силами своей строительной компании и оплатил реабилитацию ребёнку с ДЦП"></textarea>
+      <div class="calc__row">
+        <div class="calc__field">
+          <label>Вклад деньгами, ₽ <small>(если есть)</small></label>
+          <input type="number" id="deedSum" min="0" step="1000" placeholder="50 000" />
+        </div>
+        <button class="btn btn--gold" id="calcBtn">Рассчитать вклад</button>
+      </div>
+      <p class="calc__note">Демо-расчёт по упрощённой модели (привязка к РФ). На проде — ИИ-оценка с защитой от накруток.</p>
+    </div>
+    <div class="calc__out" id="calcOut" aria-live="polite">
+      <div class="calc__placeholder">
+        <div class="calc__big">0.0000<span>%</span></div>
+        <p>Ваш персональный индекс добра появится здесь</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- РЕЙТИНГ / СООБЩЕСТВО -->
+<section class="section community" id="community">
+  <div class="community__grid">
+    <div class="reveal">
+      <span class="eyebrow">Сообщество и рейтинг</span>
+      <h2>Добро, которое видно</h2>
+      <p>Личный кабинет, рейтинг социальной ответственности и закрытый клуб партнёров.
+         Не соперничество — стремление быть лучшим. Лучшие сами становятся партнёрами фонда.</p>
+      <ul class="ticks">
+        <li>Личный кабинет с историей вклада</li>
+        <li>Видимый или приватный рейтинг — на ваш выбор</li>
+        <li>Доступ в закрытое сообщество и канал</li>
+      </ul>
+      <a href="#donate" class="btn btn--outline">Войти в клуб добра</a>
+    </div>
+    <div class="board reveal">
+      <div class="board__head"><span>Рейтинг социальной ответственности</span><b>демо</b></div>
+      <ol class="board__list">
+        <li><span class="board__rk">1</span><span class="board__nm">А. М.</span><span class="board__sc">98.2</span></li>
+        <li><span class="board__rk">2</span><span class="board__nm">Корпорация «—»</span><span class="board__sc">94.7</span></li>
+        <li><span class="board__rk">3</span><span class="board__nm">И. Р.</span><span class="board__sc">91.0</span></li>
+        <li class="board__you"><span class="board__rk">7</span><span class="board__nm">Вы</span><span class="board__sc" id="boardYou">—</span></li>
+        <li><span class="board__rk">8</span><span class="board__nm">С. Г.</span><span class="board__sc">76.4</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ПАРТНЁРАМ -->
+<section class="section partners" id="partners">
+  <div class="section__head reveal">
+    <span class="eyebrow">Партнёрам и корпорациям</span>
+    <h2>Площадка, в которую выгодно вкладывать</h2>
+    <p class="section__sub">Один фонд — как пузырь: залил и всё. Холдинг добра принимает масштаб и превращает его в системный импакт.</p>
+  </div>
+  <div class="cards cards--3">
+    <article class="card reveal"><div class="card__ic">₽</div><h3>Налоговая эффективность</h3><p>Прозрачное оформление пожертвований с понятной отчётностью для бухгалтерии и аудита.</p></article>
+    <article class="card reveal"><div class="card__ic">∞</div><h3>Масштаб без потолка</h3><p>Несколько фондов и направлений в одном холдинге — деньги работают, а не упираются в лимит.</p></article>
+    <article class="card reveal"><div class="card__ic">⚑</div><h3>Репутация и ESG</h3><p>Публичный рейтинг социальной ответственности и истории партнёрств усиливают бренд.</p></article>
+  </div>
+  <div class="partners__logos reveal">
+    <span>Ведём переговоры с крупными корпорациями</span>
+    <div class="logos"><i>РУСАЛ</i><i>·</i><i>партнёры</i><i>·</i><i>советы директоров</i></div>
+  </div>
+</section>
+
+<!-- ПРОЗРАЧНОСТЬ -->
+<section class="section transparency" id="transparency">
+  <div class="section__head reveal">
+    <span class="eyebrow">Прозрачность</span>
+    <h2>Отчётность, которой можно доверять</h2>
+    <p class="section__sub">Документы, выписки и подтверждения расходов — открыто. Соответствие уставу и требованиям регуляторов.</p>
+  </div>
+  <div class="docs">
+    <a href="#" class="doc reveal"><b>2021–2025</b><span>Годовые отчёты о деятельности</span></a>
+    <a href="#" class="doc reveal"><b>ЕГРЮЛ</b><span>Выписка и учредительные документы</span></a>
+    <a href="#" class="doc reveal"><b>Чеки</b><span>Подтверждения целевых расходов</span></a>
+    <a href="#" class="doc reveal"><b>Оферта</b><span>Публичная оферта и политика данных</span></a>
+  </div>
+</section>
+
+<!-- ПОДВАЛ -->
+<footer class="footer" id="help">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <div class="brand brand--lg">
+        <span class="brand__mark"><svg viewBox="0 0 48 48" class="spiral"><path d="M24 24 m0 -17 a17 17 0 1 1 -0.1 0 M24 24 m0 -11 a11 11 0 1 0 0.1 0 M24 24 m0 -5 a5 5 0 1 1 -0.1 0" fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round"/><circle cx="24" cy="24" r="2.6" fill="#f0c46a"/></svg></span>
+        <span class="brand__txt">Коллайдер<span>добра</span></span>
+      </div>
+      <p>Системная благотворительность нового поколения.<br>Фонд «Среда Возможностей».</p>
+    </div>
+    <div class="footer__col">
+      <h4>Фонду</h4>
+      <a href="#donate">Помочь</a><a href="#help">Получить помощь</a><a href="#partners">Стать партнёром</a>
+    </div>
+    <div class="footer__col">
+      <h4>Связь</h4>
+      <a href="https://t.me/FondMitkina" target="_blank" rel="noopener">Telegram-канал</a>
+      <a href="mailto:mitfond@mail.ru">mitfond@mail.ru</a>
+      <a href="#transparency">Документы и отчётность</a>
+    </div>
+    <div class="footer__col">
+      <h4>Получить помощь</h4>
+      <p class="footer__help">Если фонд может быть полезен вам или вашему проекту — напишите нам в Telegram, мы на связи.</p>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>© 2026 Фонд «Среда Возможностей». Прототип сайта.</span>
+    <span>Дизайн и разработка — концепт-прототип</span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
