@@ -23,19 +23,7 @@
 <!-- ХЕДЕР -->
 <header class="nav" id="nav">
   <a href="#hero" class="brand">
-    <span class="brand__mark">
-      <svg viewBox="0 0 48 48" class="spiral" aria-hidden="true">
-        <defs>
-          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#f0c46a"/><stop offset="1" stop-color="#6fe3e8"/>
-          </linearGradient>
-        </defs>
-        <path d="M24 24 m0 -17 a17 17 0 1 1 -0.1 0 M24 24 m0 -11 a11 11 0 1 0 0.1 0 M24 24 m0 -5 a5 5 0 1 1 -0.1 0"
-              fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round"/>
-        <circle cx="24" cy="24" r="2.6" fill="#f0c46a"/>
-      </svg>
-    </span>
-    <span class="brand__txt">Коллайдер<span>добра</span></span>
+    <img class="brand__logo" src="assets/img/logo-gold.png" alt="Среда Возможностей" />
   </a>
   <nav class="nav__links" id="navLinks">
     <a href="#manifest">Подход</a>
@@ -56,6 +44,7 @@
   <div class="hero__glow hero__glow--1"></div>
   <div class="hero__glow hero__glow--2"></div>
   <div class="hero__inner">
+    <img class="hero__logo reveal" src="assets/img/logo-gold.png" alt="Среда Возможностей" />
     <div class="hero__tag reveal">Международный благотворительный фонд «Среда Возможностей»</div>
     <h1 class="hero__title reveal">
       Не фонд жалости.<br><span class="grad">Коллайдер добра.</span>
@@ -157,30 +146,16 @@
     <div class="dobro__left">
       <span class="eyebrow">Кнопка добра</span>
       <h2>Помочь — это один клик, а не квест</h2>
-      <p>Раньше — только QR и реквизиты. Теперь — прямая ссылка: прошёл и перевёл.
-         Выберите сумму или поддержите фонд ежемесячно.</p>
-      <div class="amounts" id="amounts">
-        <button class="amount">300 ₽</button>
-        <button class="amount amount--on">1 000 ₽</button>
-        <button class="amount">5 000 ₽</button>
-        <button class="amount">Своя сумма</button>
-      </div>
-      <label class="switch">
-        <input type="checkbox" id="monthly"><span class="switch__t"></span>
-        Делать вклад ежемесячно
-      </label>
+      <p>Перевод через Систему быстрых платежей (СБП): отсканируйте QR или нажмите кнопку с телефона — откроется приложение вашего банка.</p>
       <div class="dobro__btns">
-        <a href="#" class="btn btn--gold" id="payBtn">Перевести 1 000 ₽</a>
+        <a href="https://qr.nspk.ru/BS1A00404NP81H0L9SOBTL0JJ39FV3NL" class="btn btn--gold" target="_blank" rel="noopener">Перевести через СБП →</a>
         <a href="https://t.me/FondMitkina" class="btn btn--outline" target="_blank" rel="noopener">Канал фонда в Telegram</a>
       </div>
-      <p class="dobro__note">В прототипе оплата отключена. На проде — платёжная ссылка банка / эквайринг + СБП.</p>
+      <p class="dobro__note">⚠️ Важно: в <b>назначении платежа</b> укажите «<b>Благотворительность</b>».</p>
     </div>
     <div class="dobro__right">
-      <div class="pulse">
-        <div class="pulse__ring"></div><div class="pulse__ring"></div><div class="pulse__ring"></div>
-        <div class="pulse__core">✦</div>
-      </div>
-      <p class="dobro__caption">Ваш вклад идёт в конкретный проект — и попадает в отчётность.</p>
+      <div class="qr"><img src="assets/img/donate-qr.png" alt="QR для перевода через СБП в фонд «Среда Возможностей»" /></div>
+      <p class="dobro__caption">Наведите камеру телефона на QR — перевод через СБП в фонд «Среда Возможностей»</p>
     </div>
   </div>
 </section>
@@ -283,8 +258,7 @@
   <div class="footer__top">
     <div class="footer__brand">
       <div class="brand brand--lg">
-        <span class="brand__mark"><svg viewBox="0 0 48 48" class="spiral"><path d="M24 24 m0 -17 a17 17 0 1 1 -0.1 0 M24 24 m0 -11 a11 11 0 1 0 0.1 0 M24 24 m0 -5 a5 5 0 1 1 -0.1 0" fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round"/><circle cx="24" cy="24" r="2.6" fill="#f0c46a"/></svg></span>
-        <span class="brand__txt">Коллайдер<span>добра</span></span>
+        <img class="brand__logo" src="assets/img/logo-gold.png" alt="Среда Возможностей" />
       </div>
       <p>Системная благотворительность нового поколения.<br>Фонд «Среда Возможностей».</p>
     </div>
@@ -303,6 +277,7 @@
       <p class="footer__help">Если фонд может быть полезен вам или вашему проекту — напишите нам в Telegram, мы на связи.</p>
     </div>
   </div>
+  <div class="footer__req"><b>Реквизиты фонда:</b> ФОНД ПОДДЕРЖКИ СОЦИАЛЬНО-КУЛЬТУРНЫХ ИНИЦИАТИВ И БИЗНЕС ПРОЕКТОВ «СРЕДА ВОЗМОЖНОСТЕЙ» · ИНН 9706011000 · КПП 770601001 · р/с 40703810420000008318 в ООО «Банк Точка» · БИК 044525104 · к/с 30101810745374525104</div>
   <div class="footer__bottom">
     <span>© 2026 Фонд «Среда Возможностей». Прототип сайта.</span>
     <span>Дизайн и разработка — концепт-прототип</span>

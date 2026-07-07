@@ -27,22 +27,7 @@
   document.querySelectorAll("[data-count]").forEach(c => cio.observe(c));
 
   /* donate */
-  const amounts = document.getElementById("amounts");
-  const payBtn = document.getElementById("payBtn");
-  const monthly = document.getElementById("monthly");
-  let sum = 1000;
-  const renderPay = () => { payBtn.textContent = (monthly.checked ? "Поддерживать " : "Перевести ") + sum.toLocaleString("ru-RU") + " ₽" + (monthly.checked ? " / мес" : ""); };
-  amounts.addEventListener("click", e => {
-    const b = e.target.closest(".amount"); if (!b) return;
-    amounts.querySelectorAll(".amount").forEach(x => x.classList.remove("amount--on"));
-    b.classList.add("amount--on");
-    if (/\d/.test(b.textContent)) sum = parseInt(b.textContent.replace(/\D/g, ""), 10);
-    else { const v = prompt("Введите сумму, ₽:", "2 500"); if (v) sum = parseInt(v.replace(/\D/g, ""), 10) || sum; }
-    renderPay();
-  });
-  monthly.addEventListener("change", renderPay);
-  payBtn.addEventListener("click", e => { e.preventDefault(); payBtn.textContent = "✓ В проде здесь откроется оплата"; setTimeout(renderPay, 1800); });
-  renderPay();
+  /* пожертвования — реальная ссылка СБП (кнопка + QR) в разметке */
 
   /* lead form */
   const formBtn = document.getElementById("formBtn");
