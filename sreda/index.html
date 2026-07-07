@@ -126,31 +126,19 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="section projects" id="projects">
+<!-- CASES — карусель кейсов -->
+<section class="section cases" id="projects">
   <div class="section__head reveal center">
-    <span class="eyebrow">Флагманский проект</span>
-    <h2>Union Art Fest <span class="it">2025</span></h2>
-    <p class="section__sub">Арт-фестиваль и культурно-деловая платформа поддержки молодых художников. 18–19 октября 2025 · Москва, Столичная галерея художников.</p>
+    <span class="eyebrow">Кейсы</span>
+    <h2>Проведённые <span class="it">мероприятия</span></h2>
+    <p class="section__sub">Реальные события фонда. Нажмите на карточку — откроются фото, цифры и подробное описание.</p>
   </div>
-  <div class="ua reveal">
-    <div class="ua__lead"><img src="assets/img/unionart-1.jpg" alt="Union Art Fest 2025" loading="lazy" /></div>
-    <div class="ua__body">
-      <p>Главная идея — поддержать молодых художников на старте: помочь заявить о себе, выстроить личный бренд и начать монетизировать творчество. За два дня — выставка, аукцион, маркет и fashion show, мастер-классы, лекции и арт-завтрак, DJ-сеты и перформансы.</p>
-      <div class="ua__stats">
-        <div><b>2&nbsp;120</b><span>посетителей</span></div>
-        <div><b>150</b><span>работ художников и фотографов</span></div>
-        <div><b>7</b><span>работ продано на аукционе</span></div>
-        <div><b>30%</b><span>с продаж — в фонд</span></div>
-      </div>
-      <p class="ua__mission">Социальная миссия: <b>30% от стоимости проданных работ</b> направлены в благотворительный фонд «Среда Возможностей». О фестивале писали АСИ, Мосволонтёр, Re-port, Samokatus и др.</p>
-    </div>
+  <div class="coverflow reveal">
+    <button class="cf-arrow cf-prev" id="cfPrev" aria-label="Назад">‹</button>
+    <div class="cf-stage" id="cfStage"></div>
+    <button class="cf-arrow cf-next" id="cfNext" aria-label="Вперёд">›</button>
   </div>
-  <div class="ua__gallery reveal">
-    <img src="assets/img/unionart-2.jpg" alt="Выставка Union Art Fest 2025" loading="lazy" />
-    <img src="assets/img/unionart-4.jpg" alt="Гости фестиваля Union Art" loading="lazy" />
-    <img src="assets/img/unionart-3.jpg" alt="Команда Union Art Fest" loading="lazy" />
-  </div>
+  <div class="cf-dots" id="cfDots"></div>
 </section>
 
 <!-- TEAM -->
@@ -282,6 +270,17 @@
     <span>Сделано с ♡ для людей · прототип</span>
   </div>
 </footer>
+
+<!-- МОДАЛКА КЕЙСА -->
+<div class="modal" id="caseModal" aria-hidden="true">
+  <div class="modal__overlay" data-close></div>
+  <button class="modal__nav modal__prev" id="mPrev" aria-label="Предыдущий">‹</button>
+  <button class="modal__nav modal__next" id="mNext" aria-label="Следующий">›</button>
+  <div class="modal__box" role="dialog" aria-modal="true">
+    <button class="modal__close" data-close aria-label="Закрыть">×</button>
+    <div class="modal__body" id="modalBody"></div>
+  </div>
+</div>
 
 <script src="assets/js/main.js"></script>
 </body>
