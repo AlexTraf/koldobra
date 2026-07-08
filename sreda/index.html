@@ -175,25 +175,58 @@
 <!-- CALC (новое) -->
 <section class="section calc" id="calc">
   <div class="section__head reveal center">
-    <span class="eyebrow eyebrow--new">Новое · 2.0</span>
-    <h2>Твой процент вклада <span class="it">добра</span> в мир</h2>
-    <p class="section__sub">Опишите доброе дело — деньгами или своими ресурсами. Система оценит вклад
-       и присвоит рейтинг социальной ответственности.</p>
+    <span class="eyebrow eyebrow--new">Наш аналог IPS</span>
+    <h2>Индекс вклада <span class="it">добра</span></h2>
+    <p class="section__sub">За 30 секунд узнайте, какой вклад в мир вы уже создаёте — бесплатно и без регистрации.</p>
   </div>
-  <div class="calc__panel reveal">
-    <div class="calc__in">
-      <label>Что доброго вы сделали?</label>
-      <textarea id="deedText" rows="3" placeholder="Например: помог провести фестиваль и оплатил реабилитацию ребёнку"></textarea>
-      <div class="calc__row">
-        <div class="calc__field"><label>Вклад деньгами, ₽ <small>(если есть)</small></label>
-          <input type="number" id="deedSum" min="0" step="1000" placeholder="50 000" /></div>
-        <button class="btn btn--accent" id="calcBtn">Рассчитать вклад</button>
+  <div class="calc2 reveal">
+    <div class="calc2__form">
+      <div class="c2f"><label>Вклад деньгами в добрые дела, ₽ в год</label>
+        <input type="number" id="qMoney" min="0" step="1000" inputmode="numeric" placeholder="например, 50 000" /></div>
+      <div class="c2f"><label>Время и волонтёрство, часов в месяц</label>
+        <input type="number" id="qTime" min="0" step="1" inputmode="numeric" placeholder="например, 8" /></div>
+      <div class="c2f"><label>Ресурсы и компетенции</label>
+        <div class="chips" id="qRes">
+          <button type="button" class="chip" data-v="expert">Делюсь экспертизой</button>
+          <button type="button" class="chip" data-v="assets">Даю ресурсы / имущество</button>
+          <button type="button" class="chip" data-v="engage">Вовлекаю других</button>
+        </div>
       </div>
-      <p class="calc__note">Демо-расчёт по упрощённой модели (привязка к РФ). На проде — ИИ-оценка с защитой от накруток.</p>
+      <div class="c2f"><label>Сферы вклада</label>
+        <div class="chips" id="qSpheres">
+          <button type="button" class="chip" data-v="Дети">Дети</button>
+          <button type="button" class="chip" data-v="Здоровье">Здоровье</button>
+          <button type="button" class="chip" data-v="Образование">Образование</button>
+          <button type="button" class="chip" data-v="Культура">Культура</button>
+          <button type="button" class="chip" data-v="Экология">Экология</button>
+          <button type="button" class="chip" data-v="Спорт">Спорт</button>
+          <button type="button" class="chip" data-v="Сообщество">Сообщество</button>
+        </div>
+      </div>
+      <div class="c2f"><label>Регулярность</label>
+        <div class="seg" id="qReg">
+          <button type="button" class="seg__b" data-v="1">Разово</button>
+          <button type="button" class="seg__b" data-v="2">Иногда</button>
+          <button type="button" class="seg__b is-on" data-v="3">Регулярно</button>
+          <button type="button" class="seg__b" data-v="4">Системно</button>
+        </div>
+      </div>
+      <button class="btn btn--accent" id="calcBtn">Рассчитать индекс</button>
+      <p class="calc__note">Демо-модель с привязкой к РФ. На проде — ИИ-оценка, личный кабинет и публичный рейтинг соц-ответственности.</p>
     </div>
-    <div class="calc__out" id="calcOut" aria-live="polite">
-      <div class="calc__placeholder"><div class="calc__big">0.0000<span>%</span></div>
-        <p>Ваш персональный индекс добра появится здесь</p></div>
+    <div class="calc2__out" aria-live="polite">
+      <div class="gauge">
+        <svg viewBox="0 0 220 220" class="gauge__svg" aria-hidden="true">
+          <defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#8fc0ff"/><stop offset="1" stop-color="#5fe0e8"/></linearGradient></defs>
+          <circle class="gauge__bg" cx="110" cy="110" r="92"></circle>
+          <circle class="gauge__fg" id="gaugeFg" stroke="url(#gg)" cx="110" cy="110" r="92"></circle>
+        </svg>
+        <div class="gauge__mid"><b id="gVal">0</b><i>/ 1000</i><span id="gTier">Индекс вклада добра</span></div>
+      </div>
+      <div id="calcResult" class="calc2__result">
+        <p class="calc2__hint">Заполните поля слева и нажмите «Рассчитать индекс» — увидите свой балл, уровень и вклад в цифрах.</p>
+      </div>
     </div>
   </div>
 </section>

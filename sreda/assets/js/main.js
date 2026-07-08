@@ -33,50 +33,70 @@
   const formBtn = document.getElementById("formBtn");
   if (formBtn) formBtn.addEventListener("click", e => { e.preventDefault(); const t = formBtn.textContent; formBtn.textContent = "✓ Заявка отправлена (демо)"; setTimeout(() => formBtn.textContent = t, 2200); });
 
-  /* калькулятор «процент вклада добра» */
+  /* калькулятор «Индекс вклада добра» (v2 — аналог IPS) */
   const calcBtn = document.getElementById("calcBtn");
-  const out = document.getElementById("calcOut");
-  const boardYou = document.getElementById("boardYou");
-  const THEMES = [
-    { k: ["дет", "ребен", "ребён", "школ", "площад", "сирот"], w: 1.35, tag: "дети" },
-    { k: ["здоров", "лечен", "реабилит", "клиник", "болезн", "дцп", "инвалид"], w: 1.5, tag: "здоровье" },
-    { k: ["эколог", "природ", "дерев", "животн", "приют"], w: 1.2, tag: "экология" },
-    { k: ["образов", "учеб", "стипенд", "грант", "наук", "лаборатор"], w: 1.25, tag: "образование" },
-    { k: ["культур", "искусств", "фестив", "музе", "театр", "наслед"], w: 1.1, tag: "культура" },
-    { k: ["постро", "ремонт", "восстанов", "своими", "ресурс", "провёл", "провел"], w: 1.3, tag: "дело" },
-  ];
-  function calc() {
-    const text = (document.getElementById("deedText").value || "").toLowerCase();
-    const money = Math.max(0, parseInt((document.getElementById("deedSum").value || "0"), 10) || 0);
-    if (text.trim().length < 4 && money === 0) {
-      out.innerHTML = `<div class="calc__placeholder"><div class="calc__big">0.0000<span>%</span></div><p>Опишите дело или укажите сумму — и нажмите «Рассчитать»</p></div>`;
-      return;
+  if (calcBtn) {
+    const $ = id => document.getElementById(id);
+    document.querySelectorAll("#qRes .chip, #qSpheres .chip").forEach(c =>
+      c.addEventListener("click", () => c.classList.toggle("is-on")));
+    document.querySelectorAll("#qReg .seg__b").forEach(b =>
+      b.addEventListener("click", () => {
+        document.querySelectorAll("#qReg .seg__b").forEach(x => x.classList.remove("is-on"));
+        b.classList.add("is-on");
+      }));
+    const gaugeFg = $("gaugeFg"), gVal = $("gVal"), gTier = $("gTier"), resBox = $("calcResult");
+    const C = 578, fmt = n => n.toLocaleString("ru-RU");
+    let lastShare = "";
+    function calc() {
+      const money = Math.max(0, parseInt($("qMoney").value || "0", 10) || 0);
+      const time = Math.max(0, parseInt($("qTime").value || "0", 10) || 0);
+      const resSel = [...document.querySelectorAll("#qRes .chip.is-on")].map(c => c.dataset.v);
+      const spheres = [...document.querySelectorAll("#qSpheres .chip.is-on")].map(c => c.dataset.v);
+      const reg = parseInt(document.querySelector("#qReg .seg__b.is-on")?.dataset.v || "3", 10);
+      let s = 0;
+      s += Math.min(400, Math.log10(money + 1) * 82);
+      s += Math.min(250, time * 10);
+      s += resSel.length * 55;
+      s += Math.min(150, spheres.length * 28);
+      const regMul = [0, .55, .72, .86, 1][reg] || .86;
+      const score = Math.round(Math.min(1000, s * regMul));
+      const impactBase = money + time * 1500 + resSel.length * 40000 + spheres.length * 15000;
+      const people = Math.max(1, Math.round(impactBase * regMul / 2500));
+      const years = [0, 1, 2, 4, 7][reg] || 4;
+      const projects = Math.max(1, Math.round((money / 50000 + time / 20 + spheres.length / 2) * regMul));
+      const tiers = [[0, "Участник"], [200, "Созидатель"], [420, "Наставник"], [650, "Меценат"], [850, "Архитектор наследия"]];
+      let tier = "Участник"; tiers.forEach(t => { if (score >= t[0]) tier = t[1]; });
+      const topPct = Math.max(1, Math.min(99, 100 - Math.round(score / 1000 * 96)));
+      gaugeFg.style.strokeDashoffset = String(C * (1 - score / 1000));
+      gTier.textContent = tier;
+      let cur = 0; const step = Math.max(1, Math.round(score / 40));
+      (function tick() { cur = Math.min(score, cur + step); gVal.textContent = fmt(cur); if (cur < score) requestAnimationFrame(tick); })();
+      const sphHtml = spheres.length ? `<div class="c2-spheres">${spheres.map((sp, i) => {
+        const w = Math.max(45, Math.min(96, 62 + Math.round(score / 1000 * 34) - i * 4));
+        return `<div class="sph"><span>${sp}</span><i style="width:${w}%"></i></div>`;
+      }).join("")}</div>` : "";
+      const regWord = ["", "разово", "время от времени", "регулярно", "системно"][reg];
+      const narr = `Вы вкладываетесь <b>${regWord}</b>${spheres.length ? ` в ${spheres.length} ${spheres.length === 1 ? "сферу" : "сферы"}` : ""}. Ваш вклад уже коснулся <b>~${fmt(people)}</b> ${people === 1 ? "человека" : "человек"} — это наследие, которое продолжает расти.`;
+      lastShare = `Мой Индекс вклада добра — ${score}/1000, уровень «${tier}». А какой у тебя? https://mitfond.ru`;
+      resBox.innerHTML = `
+        <div class="c2-tier">Уровень: <b>${tier}</b></div>
+        <div class="c2-metrics">
+          <div><b>~${fmt(people)}</b><span>людей затронуто</span></div>
+          <div><b>~${years}</b><span>лет импакта</span></div>
+          <div><b>~${fmt(projects)}</b><span>проектов в эквиваленте</span></div>
+        </div>
+        ${sphHtml}
+        <p class="c2-narr">${narr}</p>
+        <div class="c2-top">Вы опережаете ~<b>${topPct}%</b> людей по вкладу</div>
+        <button class="btn btn--outline" id="shareBtn" type="button">Поделиться результатом</button>`;
+      const sb = $("shareBtn");
+      sb.addEventListener("click", () => {
+        const done = () => { sb.textContent = "✓ Скопировано"; setTimeout(() => { sb.textContent = "Поделиться результатом"; }, 1800); };
+        if (navigator.clipboard) navigator.clipboard.writeText(lastShare).then(done, done); else done();
+      });
     }
-    let themeW = 1, found = [];
-    THEMES.forEach(t => { if (t.k.some(k => text.includes(k))) { themeW = Math.max(themeW, t.w); found.push(t.tag); } });
-    const nonMoney = /(свои|ресурс|постро|помог|организова|руками|время|сам|провёл|провел)/.test(text);
-    const effort = Math.min(40, text.trim().split(/\s+/).length) * 120;
-    const base = (money + (nonMoney ? effort * 1.6 : effort)) * themeW;
-    const pct = Math.min(99.9, (base / 1_200_000_000_000) * 100);
-    const people = Math.max(1, Math.round(base / 2500));
-    const score = Math.min(99.9, 30 + Math.log10(base + 10) * 11 + themeW * 6).toFixed(1);
-    let rank = "Участник добра";
-    if (score > 55) rank = "Социально ответственный";
-    if (score > 72) rank = "Лидер импакта";
-    if (score > 86) rank = "Архитектор добра";
-    const themeTxt = found.length ? `Темы: ${found.join(", ")}. ` : "";
-    out.innerHTML = `<div class="calc__result">
-        <div class="calc__rank">${rank}</div>
-        <div class="calc__big">${pct.toFixed(4)}<span>%</span></div>
-        <p class="calc__txt">${themeTxt}Ваш вклад уже коснулся <b>~${people.toLocaleString("ru-RU")}</b> ${people === 1 ? "человека" : "человек"}. Так из отдельных дел собирается среда возможностей.</p>
-        <div class="calc__metrics">
-          <div><b>${score}</b><span>рейтинг отв.</span></div>
-          <div><b>~${people.toLocaleString("ru-RU")}</b><span>охват, чел.</span></div>
-          <div><b>${themeW.toFixed(2)}×</b><span>коэф. темы</span></div>
-        </div></div>`;
-    if (boardYou) boardYou.textContent = score;
+    calcBtn.addEventListener("click", calc);
   }
-  calcBtn.addEventListener("click", calc);
 
   /* ---- кейсы: coverflow-карусель + модалка ---- */
   const CASES = [
