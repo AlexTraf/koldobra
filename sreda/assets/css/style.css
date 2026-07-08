@@ -374,5 +374,14 @@ a{color:inherit;text-decoration:none}
 .c2-narr{font-size:.92rem;color:var(--text);margin-bottom:1rem;text-align:left}
 .c2-top{font-size:.9rem;color:var(--muted);margin-bottom:1.1rem}
 .c2-top b{color:var(--accent)}
+.c2-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1rem}
+.c2-cert{display:flex;gap:.6rem;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:1rem}
+.c2-cert input{flex:1;min-width:150px;background:var(--deep);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:.92rem;padding:.65em .9em}
+.c2-cert input:focus{outline:none;border-color:var(--accent)}
+/* модалка сертификата */
+.modal__box--cert{width:min(92vw,880px);height:auto;max-height:94vh;padding:1.4rem}
+.cert-wrap{width:100%;border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.cert-wrap canvas{width:100%;height:auto;display:block}
+.cert-actions{display:flex;gap:.8rem;justify-content:center;margin-top:1.2rem;flex-wrap:wrap}
 @media(max-width:900px){.calc2{grid-template-columns:1fr}}
 @media(max-width:560px){.c2-metrics{grid-template-columns:1fr 1fr}.sph{grid-template-columns:90px 1fr}}

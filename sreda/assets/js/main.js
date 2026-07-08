@@ -88,14 +88,66 @@
         ${sphHtml}
         <p class="c2-narr">${narr}</p>
         <div class="c2-top">Вы опережаете ~<b>${topPct}%</b> людей по вкладу</div>
-        <button class="btn btn--outline" id="shareBtn" type="button">Поделиться результатом</button>`;
+        <div class="c2-actions"><button class="btn btn--outline" id="shareBtn" type="button">Поделиться</button></div>
+        <div class="c2-cert"><input type="text" id="certName" placeholder="Ваше имя для сертификата" maxlength="40" /><button class="btn btn--accent" id="certBtn" type="button">Получить сертификат 🏅</button></div>`;
       const sb = $("shareBtn");
       sb.addEventListener("click", () => {
-        const done = () => { sb.textContent = "✓ Скопировано"; setTimeout(() => { sb.textContent = "Поделиться результатом"; }, 1800); };
+        const done = () => { sb.textContent = "✓ Скопировано"; setTimeout(() => { sb.textContent = "Поделиться"; }, 1800); };
         if (navigator.clipboard) navigator.clipboard.writeText(lastShare).then(done, done); else done();
       });
+      const cbtn = $("certBtn");
+      if (cbtn) cbtn.addEventListener("click", () => openCert(($("certName").value || "").trim() || "Друг фонда", score, tier));
     }
     calcBtn.addEventListener("click", calc);
+
+    /* сертификат «Индекса вклада добра» */
+    const certModal = document.getElementById("certModal");
+    const certCanvas = document.getElementById("certCanvas");
+    const certDownload = document.getElementById("certDownload");
+    let certShareText = "";
+    function openCert(name, score, tier) {
+      certShareText = `Мой Индекс вклада добра — ${score}/1000, уровень «${tier}». mitfond.ru`;
+      certModal.classList.add("is-open"); document.body.style.overflow = "hidden";
+      const ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+      ready.then(() => drawCert(certCanvas, name, score, tier, () => { certDownload.href = certCanvas.toDataURL("image/png"); }));
+    }
+    function drawCert(cv, name, score, tier, cb) {
+      const W = 1200, H = 848; cv.width = W; cv.height = H;
+      const x = cv.getContext("2d");
+      const bg = x.createLinearGradient(0, 0, W, H); bg.addColorStop(0, "#0a1226"); bg.addColorStop(1, "#0e1c38");
+      x.fillStyle = bg; x.fillRect(0, 0, W, H);
+      const rg = x.createRadialGradient(W / 2, 300, 0, W / 2, 300, 640);
+      rg.addColorStop(0, "rgba(143,176,255,0.12)"); rg.addColorStop(1, "transparent");
+      x.fillStyle = rg; x.fillRect(0, 0, W, H);
+      x.strokeStyle = "rgba(143,176,255,0.55)"; x.lineWidth = 2; x.strokeRect(40, 40, W - 80, H - 80);
+      x.strokeStyle = "rgba(143,176,255,0.18)"; x.lineWidth = 1; x.strokeRect(52, 52, W - 104, H - 104);
+      x.textAlign = "center";
+      x.fillStyle = "#cdd8ea"; x.font = "700 24px Manrope, Arial, sans-serif"; x.fillText("ФОНД «СРЕДА ВОЗМОЖНОСТЕЙ»", W / 2, 236);
+      x.fillStyle = "#eef2fb"; x.font = "800 62px Manrope, Arial, sans-serif"; x.fillText("СЕРТИФИКАТ", W / 2, 306);
+      x.fillStyle = "#8fc0ff"; x.font = "italic 28px 'Playfair Display', Georgia, serif"; x.fillText("Индекс вклада добра", W / 2, 349);
+      x.fillStyle = "#9fb0cc"; x.font = "400 23px Manrope, Arial, sans-serif"; x.fillText("Настоящим подтверждается, что", W / 2, 428);
+      x.fillStyle = "#ffffff"; x.font = "700 44px Manrope, Arial, sans-serif"; x.fillText(name, W / 2, 487);
+      x.fillStyle = "#9fb0cc"; x.font = "400 23px Manrope, Arial, sans-serif"; x.fillText("создаёт наследие добра", W / 2, 528);
+      const gr = x.createLinearGradient(W / 2 - 220, 0, W / 2 + 220, 0); gr.addColorStop(0, "#8fc0ff"); gr.addColorStop(1, "#5fe0e8");
+      x.fillStyle = gr; x.font = "italic 92px 'Playfair Display', Georgia, serif"; x.fillText(score + " / 1000", W / 2, 648);
+      x.fillStyle = "#eef2fb"; x.font = "700 30px Manrope, Arial, sans-serif"; x.fillText("Уровень: " + tier, W / 2, 702);
+      x.fillStyle = "#6b7a9c"; x.font = "400 20px Manrope, Arial, sans-serif";
+      let d = ""; try { d = new Date().toLocaleDateString("ru-RU"); } catch (e) {}
+      x.fillText(d + "   ·   mitfond.ru", W / 2, 772);
+      const logo = new Image();
+      logo.onload = () => { const sz = 120; x.drawImage(logo, W / 2 - sz / 2, 80, sz, sz); if (cb) cb(); };
+      logo.onerror = () => { if (cb) cb(); };
+      logo.src = "assets/img/logo-white.png";
+    }
+    if (certModal) {
+      certModal.querySelectorAll("[data-certclose]").forEach(el => el.addEventListener("click", () => { certModal.classList.remove("is-open"); document.body.style.overflow = ""; }));
+      const cShare = document.getElementById("certShare");
+      if (cShare) cShare.addEventListener("click", () => {
+        const fin = () => { cShare.textContent = "✓ Скопировано"; setTimeout(() => { cShare.textContent = "Поделиться"; }, 1800); };
+        if (navigator.clipboard) navigator.clipboard.writeText(certShareText).then(fin, fin); else fin();
+      });
+      document.addEventListener("keydown", e => { if (e.key === "Escape" && certModal.classList.contains("is-open")) { certModal.classList.remove("is-open"); document.body.style.overflow = ""; } });
+    }
   }
 
   /* ---- кейсы: coverflow-карусель + модалка ---- */

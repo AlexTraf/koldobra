@@ -315,6 +315,19 @@
   </div>
 </div>
 
+<!-- МОДАЛКА СЕРТИФИКАТА -->
+<div class="modal" id="certModal" aria-hidden="true">
+  <div class="modal__overlay" data-certclose></div>
+  <div class="modal__box modal__box--cert" role="dialog" aria-modal="true">
+    <button class="modal__close" data-certclose aria-label="Закрыть">×</button>
+    <div class="cert-wrap"><canvas id="certCanvas" width="1200" height="848"></canvas></div>
+    <div class="cert-actions">
+      <a class="btn btn--accent" id="certDownload" href="#" download="sertifikat-vklada-dobra.png">Скачать PNG</a>
+      <button class="btn btn--outline" id="certShare" type="button">Поделиться</button>
+    </div>
+  </div>
+</div>
+
 <script src="assets/js/main.js"></script>
 </body>
 </html>
