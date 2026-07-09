@@ -334,3 +334,31 @@ a{color:inherit;text-decoration:none}
   .m-gallery{grid-template-columns:1fr}.m-gallery img{height:230px}
   .modal__prev{left:6px}.modal__next{right:6px}
 }
+
+/* открытый сбор (адресный) */
+.fund-card{display:grid;grid-template-columns:.82fr 1.18fr;background:var(--surface);border:1px solid var(--border);border-radius:22px;overflow:hidden}
+.fund-photo{position:relative;min-height:360px;background:linear-gradient(150deg,rgba(240,196,106,.28),rgba(230,169,78,.12))}
+.fund-badge{position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;gap:.55em;background:rgba(20,14,8,.72);backdrop-filter:blur(6px);border:1px solid var(--border);color:#fff;font-size:.76rem;font-weight:700;letter-spacing:.04em;padding:.45em .95em;border-radius:100px}
+.fund-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:pulseDot 1.8s infinite}
+@keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(61,220,132,.6)}70%{box-shadow:0 0 0 9px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+.fund-body{padding:clamp(1.5rem,3vw,2.4rem)}
+.fund-body h3{font-size:1.4rem;margin-bottom:.6rem}
+.fund-diag{color:var(--muted);margin-bottom:1.3rem}
+.fund-progress{margin-bottom:1.3rem}
+.fund-bar{height:12px;border-radius:12px;background:var(--bg2);border:1px solid var(--border);overflow:hidden;margin-bottom:.8rem}
+.fund-bar i{display:block;height:100%;border-radius:12px;background:var(--grad)}
+.fund-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.fund-nums b{display:block;font-family:"Unbounded",sans-serif;font-size:1.05rem;color:var(--gold)}
+.fund-nums span{font-size:.74rem;color:var(--dim)}
+.fund-upd{font-size:.78rem;color:var(--dim);margin-bottom:1rem;display:flex;align-items:center;gap:.45em}
+.fund-upd::before{content:"🔄";font-size:.95em}
+.fund-quote{font-style:italic;font-size:1.05rem;color:var(--text);margin-bottom:1.3rem;line-height:1.45}
+.fund-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:.9rem}
+.fund-note{font-size:.8rem;color:var(--dim)}
+.fund-slides{position:absolute;inset:0}
+.fund-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;opacity:0;transition:opacity .8s ease}
+.fund-slides img.is-on{opacity:1}
+.fund-dots{position:absolute;bottom:14px;left:0;right:0;z-index:2;display:flex;gap:.4rem;justify-content:center}
+.fund-dot{width:8px;height:8px;border-radius:50%;border:0;background:rgba(255,255,255,.5);cursor:pointer;padding:0;transition:.25s}
+.fund-dot.is-on{background:#fff;width:22px;border-radius:5px}
+@media(max-width:760px){.fund-card{grid-template-columns:1fr}.fund-photo{min-height:300px}.fund-nums{grid-template-columns:1fr 1fr}}
