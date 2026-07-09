@@ -405,4 +405,6 @@ a{color:inherit;text-decoration:none}
 .fund-quote{font-family:"Playfair Display",serif;font-style:italic;font-size:1.1rem;color:var(--text);margin-bottom:1.3rem;line-height:1.45}
 .fund-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:.9rem}
 .fund-note{font-size:.8rem;color:var(--dim)}
+.fund-upd{font-size:.78rem;color:var(--dim);margin-bottom:1rem;display:flex;align-items:center;gap:.45em}
+.fund-upd::before{content:"🔄";font-size:.95em}
 @media(max-width:760px){.fund-card{grid-template-columns:1fr}.fund-photo{min-height:300px}.fund-nums{grid-template-columns:1fr 1fr}}
