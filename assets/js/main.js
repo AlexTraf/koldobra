@@ -196,6 +196,9 @@
     });
     function start() { timer = setInterval(() => go(fi + 1), 4500); }
     function stop() { clearInterval(timer); }
+    const fPrev = document.getElementById("fundPrev"), fNext = document.getElementById("fundNext");
+    if (fPrev) fPrev.addEventListener("click", () => go(fi - 1));
+    if (fNext) fNext.addEventListener("click", () => go(fi + 1));
     start();
     const wrap = fundSlides.closest(".fund-photo");
     wrap.addEventListener("mouseenter", stop); wrap.addEventListener("mouseleave", start);

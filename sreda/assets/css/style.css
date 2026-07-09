@@ -414,3 +414,6 @@ a{color:inherit;text-decoration:none}
 .fund-dots{position:absolute;bottom:14px;left:0;right:0;z-index:2;display:flex;gap:.4rem;justify-content:center}
 .fund-dot{width:8px;height:8px;border-radius:50%;border:0;background:rgba(255,255,255,.5);cursor:pointer;padding:0;transition:.25s}
 .fund-dot.is-on{background:#fff;width:22px;border-radius:5px}
+.fund-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(0,0,0,.42);backdrop-filter:blur(4px);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;transition:.2s}
+.fund-arrow:hover{background:rgba(0,0,0,.62)}
+.fund-arrow--prev{left:12px}.fund-arrow--next{right:12px}

@@ -112,26 +112,29 @@
       ready.then(() => drawCert(certCanvas, name, score, tier, () => { certDownload.href = certCanvas.toDataURL("image/png"); }));
     }
     function drawCert(cv, name, score, tier, cb) {
+      const css = getComputedStyle(document.documentElement);
+      const acc = (css.getPropertyValue("--accent").trim() || "#8fc0ff");
+      const acc2 = (css.getPropertyValue("--accent2").trim() || "#5fe0e8");
+      const bgc = (css.getPropertyValue("--bg2").trim() || "#0b1326");
       const W = 1200, H = 848; cv.width = W; cv.height = H;
       const x = cv.getContext("2d");
-      const bg = x.createLinearGradient(0, 0, W, H); bg.addColorStop(0, "#0a1226"); bg.addColorStop(1, "#0e1c38");
-      x.fillStyle = bg; x.fillRect(0, 0, W, H);
+      x.fillStyle = bgc; x.fillRect(0, 0, W, H);
       const rg = x.createRadialGradient(W / 2, 300, 0, W / 2, 300, 640);
-      rg.addColorStop(0, "rgba(143,176,255,0.12)"); rg.addColorStop(1, "transparent");
+      rg.addColorStop(0, acc + "26"); rg.addColorStop(1, "rgba(0,0,0,0)");
       x.fillStyle = rg; x.fillRect(0, 0, W, H);
-      x.strokeStyle = "rgba(143,176,255,0.55)"; x.lineWidth = 2; x.strokeRect(40, 40, W - 80, H - 80);
-      x.strokeStyle = "rgba(143,176,255,0.18)"; x.lineWidth = 1; x.strokeRect(52, 52, W - 104, H - 104);
+      x.strokeStyle = acc + "8c"; x.lineWidth = 2; x.strokeRect(40, 40, W - 80, H - 80);
+      x.strokeStyle = acc + "30"; x.lineWidth = 1; x.strokeRect(52, 52, W - 104, H - 104);
       x.textAlign = "center";
-      x.fillStyle = "#cdd8ea"; x.font = "700 24px Manrope, Arial, sans-serif"; x.fillText("ФОНД «СРЕДА ВОЗМОЖНОСТЕЙ»", W / 2, 236);
-      x.fillStyle = "#eef2fb"; x.font = "800 62px Manrope, Arial, sans-serif"; x.fillText("СЕРТИФИКАТ", W / 2, 306);
-      x.fillStyle = "#8fc0ff"; x.font = "italic 28px 'Playfair Display', Georgia, serif"; x.fillText("Индекс вклада добра", W / 2, 349);
-      x.fillStyle = "#9fb0cc"; x.font = "400 23px Manrope, Arial, sans-serif"; x.fillText("Настоящим подтверждается, что", W / 2, 428);
+      x.fillStyle = "#e6ebf5"; x.font = "700 24px Manrope, Arial, sans-serif"; x.fillText("ФОНД «СРЕДА ВОЗМОЖНОСТЕЙ»", W / 2, 236);
+      x.fillStyle = "#ffffff"; x.font = "800 62px Manrope, Arial, sans-serif"; x.fillText("СЕРТИФИКАТ", W / 2, 306);
+      x.fillStyle = acc; x.font = "italic 28px 'Playfair Display', Georgia, serif"; x.fillText("Индекс вклада добра", W / 2, 349);
+      x.fillStyle = "#aab4c6"; x.font = "400 23px Manrope, Arial, sans-serif"; x.fillText("Настоящим подтверждается, что", W / 2, 428);
       x.fillStyle = "#ffffff"; x.font = "700 44px Manrope, Arial, sans-serif"; x.fillText(name, W / 2, 487);
-      x.fillStyle = "#9fb0cc"; x.font = "400 23px Manrope, Arial, sans-serif"; x.fillText("создаёт наследие добра", W / 2, 528);
-      const gr = x.createLinearGradient(W / 2 - 220, 0, W / 2 + 220, 0); gr.addColorStop(0, "#8fc0ff"); gr.addColorStop(1, "#5fe0e8");
+      x.fillStyle = "#aab4c6"; x.font = "400 23px Manrope, Arial, sans-serif"; x.fillText("создаёт наследие добра", W / 2, 528);
+      const gr = x.createLinearGradient(W / 2 - 220, 0, W / 2 + 220, 0); gr.addColorStop(0, acc); gr.addColorStop(1, acc2);
       x.fillStyle = gr; x.font = "italic 92px 'Playfair Display', Georgia, serif"; x.fillText(score + " / 1000", W / 2, 648);
-      x.fillStyle = "#eef2fb"; x.font = "700 30px Manrope, Arial, sans-serif"; x.fillText("Уровень: " + tier, W / 2, 702);
-      x.fillStyle = "#6b7a9c"; x.font = "400 20px Manrope, Arial, sans-serif";
+      x.fillStyle = "#e6ebf5"; x.font = "700 30px Manrope, Arial, sans-serif"; x.fillText("Уровень: " + tier, W / 2, 702);
+      x.fillStyle = "#8892a4"; x.font = "400 20px Manrope, Arial, sans-serif";
       let d = ""; try { d = new Date().toLocaleDateString("ru-RU"); } catch (e) {}
       x.fillText(d + "   ·   mitfond.ru", W / 2, 772);
       const logo = new Image();
@@ -245,6 +248,9 @@
     });
     function start() { timer = setInterval(() => go(fi + 1), 4500); }
     function stop() { clearInterval(timer); }
+    const fPrev = document.getElementById("fundPrev"), fNext = document.getElementById("fundNext");
+    if (fPrev) fPrev.addEventListener("click", () => go(fi - 1));
+    if (fNext) fNext.addEventListener("click", () => go(fi + 1));
     start();
     const wrap = fundSlides.closest(".fund-photo");
     wrap.addEventListener("mouseenter", stop); wrap.addEventListener("mouseleave", start);
