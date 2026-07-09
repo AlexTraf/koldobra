@@ -385,3 +385,24 @@ a{color:inherit;text-decoration:none}
 .cert-actions{display:flex;gap:.8rem;justify-content:center;margin-top:1.2rem;flex-wrap:wrap}
 @media(max-width:900px){.calc2{grid-template-columns:1fr}}
 @media(max-width:560px){.c2-metrics{grid-template-columns:1fr 1fr}.sph{grid-template-columns:90px 1fr}}
+
+/* открытый сбор (адресный) */
+.fund-card{display:grid;grid-template-columns:.82fr 1.18fr;background:var(--surface);border:1px solid var(--border);border-radius:22px;overflow:hidden}
+.fund-photo{position:relative;min-height:360px;background:linear-gradient(150deg,rgba(143,176,255,.28),rgba(95,224,232,.12))}
+.fund-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block}
+.fund-badge{position:absolute;top:16px;left:16px;z-index:2;display:inline-flex;align-items:center;gap:.55em;background:rgba(8,13,26,.72);backdrop-filter:blur(6px);border:1px solid var(--border);color:#fff;font-size:.76rem;font-weight:700;letter-spacing:.04em;padding:.45em .95em;border-radius:100px}
+.fund-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:pulseDot 1.8s infinite}
+@keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(61,220,132,.6)}70%{box-shadow:0 0 0 9px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+.fund-body{padding:clamp(1.5rem,3vw,2.4rem)}
+.fund-body h3{font-size:1.4rem;margin-bottom:.6rem}
+.fund-diag{color:var(--muted);margin-bottom:1.3rem}
+.fund-progress{margin-bottom:1.3rem}
+.fund-bar{height:12px;border-radius:12px;background:var(--deep);border:1px solid var(--border);overflow:hidden;margin-bottom:.8rem}
+.fund-bar i{display:block;height:100%;border-radius:12px;background:var(--grad)}
+.fund-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.fund-nums b{display:block;font-family:"Playfair Display",serif;font-style:italic;font-size:1.15rem;color:var(--accent)}
+.fund-nums span{font-size:.74rem;color:var(--dim)}
+.fund-quote{font-family:"Playfair Display",serif;font-style:italic;font-size:1.1rem;color:var(--text);margin-bottom:1.3rem;line-height:1.45}
+.fund-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:.9rem}
+.fund-note{font-size:.8rem;color:var(--dim)}
+@media(max-width:760px){.fund-card{grid-template-columns:1fr}.fund-photo{min-height:300px}.fund-nums{grid-template-columns:1fr 1fr}}
