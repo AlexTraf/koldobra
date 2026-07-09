@@ -408,3 +408,9 @@ a{color:inherit;text-decoration:none}
 .fund-upd{font-size:.78rem;color:var(--dim);margin-bottom:1rem;display:flex;align-items:center;gap:.45em}
 .fund-upd::before{content:"🔄";font-size:.95em}
 @media(max-width:760px){.fund-card{grid-template-columns:1fr}.fund-photo{min-height:300px}.fund-nums{grid-template-columns:1fr 1fr}}
+.fund-slides{position:absolute;inset:0}
+.fund-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;opacity:0;transition:opacity .8s ease}
+.fund-slides img.is-on{opacity:1}
+.fund-dots{position:absolute;bottom:14px;left:0;right:0;z-index:2;display:flex;gap:.4rem;justify-content:center}
+.fund-dot{width:8px;height:8px;border-radius:50%;border:0;background:rgba(255,255,255,.5);cursor:pointer;padding:0;transition:.25s}
+.fund-dot.is-on{background:#fff;width:22px;border-radius:5px}

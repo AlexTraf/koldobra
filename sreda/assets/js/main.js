@@ -231,6 +231,25 @@
     });
   }
 
+  /* галерея фото в блоке сбора */
+  const fundSlides = document.getElementById("fundSlides");
+  if (fundSlides) {
+    const imgs = [...fundSlides.querySelectorAll("img")];
+    const dotsC = document.getElementById("fundDots");
+    let fi = 0, timer;
+    function go(i) { fi = (i + imgs.length) % imgs.length; imgs.forEach((im, j) => im.classList.toggle("is-on", j === fi)); dots.forEach((d, j) => d.classList.toggle("is-on", j === fi)); }
+    const dots = imgs.map((_, i) => {
+      const d = document.createElement("button"); d.className = "fund-dot"; if (i === 0) d.classList.add("is-on");
+      d.setAttribute("aria-label", "Фото " + (i + 1)); d.addEventListener("click", () => go(i));
+      dotsC.appendChild(d); return d;
+    });
+    function start() { timer = setInterval(() => go(fi + 1), 4500); }
+    function stop() { clearInterval(timer); }
+    start();
+    const wrap = fundSlides.closest(".fund-photo");
+    wrap.addEventListener("mouseenter", stop); wrap.addEventListener("mouseleave", start);
+  }
+
   /* collider canvas */
   const cv = document.getElementById("collider");
   if (cv && !matchMedia("(prefers-reduced-motion:reduce)").matches) {
