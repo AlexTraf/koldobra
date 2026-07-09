@@ -46,61 +46,125 @@
 
   /* пожертвования — реальная ссылка СБП (кнопка + QR) в разметке */
 
-  /* ---- калькулятор «процент вклада добра» (демо-модель) ---- */
+  /* калькулятор «Индекс вклада добра» (v2 — аналог IPS) */
   const calcBtn = document.getElementById("calcBtn");
-  const out = document.getElementById("calcOut");
-  const boardYou = document.getElementById("boardYou");
-
-  const THEMES = [
-    { k: ["дет", "ребен", "ребён", "школ", "площад", "сирот"], w: 1.35, tag: "дети" },
-    { k: ["здоров", "лечен", "реабилит", "клиник", "болезн", "дцп", "инвалид"], w: 1.5, tag: "здоровье" },
-    { k: ["эколог", "природ", "дерев", "животн", "приют"], w: 1.2, tag: "экология" },
-    { k: ["образов", "учеб", "стипенд", "грант", "наук"], w: 1.25, tag: "образование" },
-    { k: ["культур", "искусств", "фестив", "музе", "театр"], w: 1.1, tag: "культура" },
-    { k: ["постро", "ремонт", "восстанов", "своими", "ресурс"], w: 1.3, tag: "дело" },
-  ];
-
-  function calc() {
-    const text = (document.getElementById("deedText").value || "").toLowerCase();
-    const money = Math.max(0, parseInt((document.getElementById("deedSum").value || "0"), 10) || 0);
-    if (text.trim().length < 4 && money === 0) {
-      out.innerHTML = `<div class="calc__placeholder"><div class="calc__big">0.0000<span>%</span></div>
-        <p>Опишите дело или укажите сумму — и нажмите «Рассчитать»</p></div>`;
-      return;
-    }
-    // вес тем
-    let themeW = 1, found = [];
-    THEMES.forEach(t => { if (t.k.some(k => text.includes(k))) { themeW = Math.max(themeW, t.w); found.push(t.tag); } });
-    const nonMoney = /(своими|ресурс|постро|помог|органзиова|организова|руками|время|сам)/.test(text);
-    // импакт-модель (привязка к РФ, демо): деньги + усилие
-    const effort = Math.min(40, text.trim().split(/\s+/).length) * 120; // условный «рублёвый эквивалент» усилия
-    const base = (money + (nonMoney ? effort * 1.6 : effort)) * themeW;
-    // % вклада относительно условного годового «фонда добра РФ» ~ 1.2 трлн ₽
-    const pct = Math.min(99.9, (base / 1_200_000_000_000) * 100);
-    const people = Math.max(1, Math.round(base / 2500)); // ~2500 ₽ на человека
-    const score = Math.min(99.9, 30 + Math.log10(base + 10) * 11 + themeW * 6).toFixed(1);
-
-    let rank = "Участник добра";
-    if (score > 55) rank = "Социально ответственный";
-    if (score > 72) rank = "Лидер импакта";
-    if (score > 86) rank = "Архитектор добра";
-
-    const themeTxt = found.length ? `Темы: ${found.join(", ")}. ` : "";
-    out.innerHTML = `
-      <div class="calc__result">
-        <div class="calc__rank">${rank}</div>
-        <div class="calc__big">${pct.toFixed(4)}<span>%</span></div>
-        <p class="calc__txt">${themeTxt}Ваш вклад уже коснулся <b>~${people.toLocaleString("ru-RU")}</b>
-           ${people === 1 ? "человека" : "человек"}. Так из отдельных дел собирается коллайдер добра.</p>
-        <div class="calc__metrics">
-          <div><b>${score}</b><span>рейтинг отв.</span></div>
-          <div><b>~${people.toLocaleString("ru-RU")}</b><span>охват, чел.</span></div>
-          <div><b>${(themeW).toFixed(2)}×</b><span>коэф. темы</span></div>
+  if (calcBtn) {
+    const $ = id => document.getElementById(id);
+    document.querySelectorAll("#qRes .chip, #qSpheres .chip").forEach(c =>
+      c.addEventListener("click", () => c.classList.toggle("is-on")));
+    document.querySelectorAll("#qReg .seg__b").forEach(b =>
+      b.addEventListener("click", () => {
+        document.querySelectorAll("#qReg .seg__b").forEach(x => x.classList.remove("is-on"));
+        b.classList.add("is-on");
+      }));
+    const gaugeFg = $("gaugeFg"), gVal = $("gVal"), gTier = $("gTier"), resBox = $("calcResult");
+    const C = 578, fmt = n => n.toLocaleString("ru-RU");
+    let lastShare = "";
+    function calc() {
+      const money = Math.max(0, parseInt($("qMoney").value || "0", 10) || 0);
+      const time = Math.max(0, parseInt($("qTime").value || "0", 10) || 0);
+      const resSel = [...document.querySelectorAll("#qRes .chip.is-on")].map(c => c.dataset.v);
+      const spheres = [...document.querySelectorAll("#qSpheres .chip.is-on")].map(c => c.dataset.v);
+      const reg = parseInt(document.querySelector("#qReg .seg__b.is-on")?.dataset.v || "3", 10);
+      let s = 0;
+      s += Math.min(400, Math.log10(money + 1) * 82);
+      s += Math.min(250, time * 10);
+      s += resSel.length * 55;
+      s += Math.min(150, spheres.length * 28);
+      const regMul = [0, .55, .72, .86, 1][reg] || .86;
+      const score = Math.round(Math.min(1000, s * regMul));
+      const impactBase = money + time * 1500 + resSel.length * 40000 + spheres.length * 15000;
+      const people = Math.max(1, Math.round(impactBase * regMul / 2500));
+      const years = [0, 1, 2, 4, 7][reg] || 4;
+      const projects = Math.max(1, Math.round((money / 50000 + time / 20 + spheres.length / 2) * regMul));
+      const tiers = [[0, "Участник"], [200, "Созидатель"], [420, "Наставник"], [650, "Меценат"], [850, "Архитектор наследия"]];
+      let tier = "Участник"; tiers.forEach(t => { if (score >= t[0]) tier = t[1]; });
+      const topPct = Math.max(1, Math.min(99, 100 - Math.round(score / 1000 * 96)));
+      gaugeFg.style.strokeDashoffset = String(C * (1 - score / 1000));
+      gTier.textContent = tier;
+      let cur = 0; const step = Math.max(1, Math.round(score / 40));
+      (function tick() { cur = Math.min(score, cur + step); gVal.textContent = fmt(cur); if (cur < score) requestAnimationFrame(tick); })();
+      const sphHtml = spheres.length ? `<div class="c2-spheres">${spheres.map((sp, i) => {
+        const w = Math.max(45, Math.min(96, 62 + Math.round(score / 1000 * 34) - i * 4));
+        return `<div class="sph"><span>${sp}</span><i style="width:${w}%"></i></div>`;
+      }).join("")}</div>` : "";
+      const regWord = ["", "разово", "время от времени", "регулярно", "системно"][reg];
+      const narr = `Вы вкладываетесь <b>${regWord}</b>${spheres.length ? ` в ${spheres.length} ${spheres.length === 1 ? "сферу" : "сферы"}` : ""}. Ваш вклад уже коснулся <b>~${fmt(people)}</b> ${people === 1 ? "человека" : "человек"} — это наследие, которое продолжает расти.`;
+      lastShare = `Мой Индекс вклада добра — ${score}/1000, уровень «${tier}». А какой у тебя? https://mitfond.ru`;
+      resBox.innerHTML = `
+        <div class="c2-tier">Уровень: <b>${tier}</b></div>
+        <div class="c2-metrics">
+          <div><b>~${fmt(people)}</b><span>людей затронуто</span></div>
+          <div><b>~${years}</b><span>лет импакта</span></div>
+          <div><b>~${fmt(projects)}</b><span>проектов в эквиваленте</span></div>
         </div>
-      </div>`;
-    if (boardYou) boardYou.textContent = score;
+        ${sphHtml}
+        <p class="c2-narr">${narr}</p>
+        <div class="c2-top">Вы опережаете ~<b>${topPct}%</b> людей по вкладу</div>
+        <div class="c2-actions"><button class="btn btn--outline" id="shareBtn" type="button">Поделиться</button></div>
+        <div class="c2-cert"><input type="text" id="certName" placeholder="Ваше имя для сертификата" maxlength="40" /><button class="btn btn--accent" id="certBtn" type="button">Получить сертификат 🏅</button></div>`;
+      const sb = $("shareBtn");
+      sb.addEventListener("click", () => {
+        const done = () => { sb.textContent = "✓ Скопировано"; setTimeout(() => { sb.textContent = "Поделиться"; }, 1800); };
+        if (navigator.clipboard) navigator.clipboard.writeText(lastShare).then(done, done); else done();
+      });
+      const cbtn = $("certBtn");
+      if (cbtn) cbtn.addEventListener("click", () => openCert(($("certName").value || "").trim() || "Друг фонда", score, tier));
+    }
+    calcBtn.addEventListener("click", calc);
+
+    /* сертификат «Индекса вклада добра» */
+    const certModal = document.getElementById("certModal");
+    const certCanvas = document.getElementById("certCanvas");
+    const certDownload = document.getElementById("certDownload");
+    let certShareText = "";
+    function openCert(name, score, tier) {
+      certShareText = `Мой Индекс вклада добра — ${score}/1000, уровень «${tier}». mitfond.ru`;
+      certModal.classList.add("is-open"); document.body.style.overflow = "hidden";
+      const ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+      ready.then(() => drawCert(certCanvas, name, score, tier, () => { certDownload.href = certCanvas.toDataURL("image/png"); }));
+    }
+    function drawCert(cv, name, score, tier, cb) {
+      const css = getComputedStyle(document.documentElement);
+      const acc = (css.getPropertyValue("--accent").trim() || "#8fc0ff");
+      const acc2 = (css.getPropertyValue("--accent2").trim() || "#5fe0e8");
+      const bgc = (css.getPropertyValue("--bg2").trim() || "#0b1326");
+      const W = 1200, H = 848; cv.width = W; cv.height = H;
+      const x = cv.getContext("2d");
+      x.fillStyle = bgc; x.fillRect(0, 0, W, H);
+      const rg = x.createRadialGradient(W / 2, 300, 0, W / 2, 300, 640);
+      rg.addColorStop(0, acc + "26"); rg.addColorStop(1, "rgba(0,0,0,0)");
+      x.fillStyle = rg; x.fillRect(0, 0, W, H);
+      x.strokeStyle = acc + "8c"; x.lineWidth = 2; x.strokeRect(40, 40, W - 80, H - 80);
+      x.strokeStyle = acc + "30"; x.lineWidth = 1; x.strokeRect(52, 52, W - 104, H - 104);
+      x.textAlign = "center";
+      x.fillStyle = "#e6ebf5"; x.font = "700 24px Manrope, Arial, sans-serif"; x.fillText("ФОНД «СРЕДА ВОЗМОЖНОСТЕЙ»", W / 2, 236);
+      x.fillStyle = "#ffffff"; x.font = "800 62px Manrope, Arial, sans-serif"; x.fillText("СЕРТИФИКАТ", W / 2, 306);
+      x.fillStyle = acc; x.font = "italic 28px 'Playfair Display', Georgia, serif"; x.fillText("Индекс вклада добра", W / 2, 349);
+      x.fillStyle = "#aab4c6"; x.font = "400 23px Manrope, Arial, sans-serif"; x.fillText("Настоящим подтверждается, что", W / 2, 428);
+      x.fillStyle = "#ffffff"; x.font = "700 44px Manrope, Arial, sans-serif"; x.fillText(name, W / 2, 487);
+      x.fillStyle = "#aab4c6"; x.font = "400 23px Manrope, Arial, sans-serif"; x.fillText("создаёт наследие добра", W / 2, 528);
+      const gr = x.createLinearGradient(W / 2 - 220, 0, W / 2 + 220, 0); gr.addColorStop(0, acc); gr.addColorStop(1, acc2);
+      x.fillStyle = gr; x.font = "italic 92px 'Playfair Display', Georgia, serif"; x.fillText(score + " / 1000", W / 2, 648);
+      x.fillStyle = "#e6ebf5"; x.font = "700 30px Manrope, Arial, sans-serif"; x.fillText("Уровень: " + tier, W / 2, 702);
+      x.fillStyle = "#8892a4"; x.font = "400 20px Manrope, Arial, sans-serif";
+      let d = ""; try { d = new Date().toLocaleDateString("ru-RU"); } catch (e) {}
+      x.fillText(d + "   ·   mitfond.ru", W / 2, 772);
+      const logo = new Image();
+      logo.onload = () => { const sz = 120; x.drawImage(logo, W / 2 - sz / 2, 80, sz, sz); if (cb) cb(); };
+      logo.onerror = () => { if (cb) cb(); };
+      logo.src = "assets/img/logo-white.png";
+    }
+    if (certModal) {
+      certModal.querySelectorAll("[data-certclose]").forEach(el => el.addEventListener("click", () => { certModal.classList.remove("is-open"); document.body.style.overflow = ""; }));
+      const cShare = document.getElementById("certShare");
+      if (cShare) cShare.addEventListener("click", () => {
+        const fin = () => { cShare.textContent = "✓ Скопировано"; setTimeout(() => { cShare.textContent = "Поделиться"; }, 1800); };
+        if (navigator.clipboard) navigator.clipboard.writeText(certShareText).then(fin, fin); else fin();
+      });
+      document.addEventListener("keydown", e => { if (e.key === "Escape" && certModal.classList.contains("is-open")) { certModal.classList.remove("is-open"); document.body.style.overflow = ""; } });
+    }
   }
-  calcBtn.addEventListener("click", calc);
 
   /* ---- кейсы: coverflow-карусель + модалка ---- */
   const CASES = [

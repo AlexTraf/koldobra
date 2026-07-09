@@ -4,6 +4,7 @@
   --surface2:rgba(255,255,255,.06); --border:rgba(255,255,255,.09);
   --text:#eef0f6; --muted:#9aa0b4; --dim:#6b7186;
   --gold:#f0c46a; --gold2:#e8a94e; --cyan:#6fe3e8; --violet:#9a8cff;
+  --accent:var(--gold); --accent2:var(--cyan); --deep:#0a0a0f;
   --grad:linear-gradient(115deg,var(--gold),var(--cyan));
   --grad-v:linear-gradient(160deg,var(--violet),var(--cyan));
   --radius:18px; --maxw:1160px; --ease:cubic-bezier(.2,.7,.2,1);
@@ -365,3 +366,55 @@ a{color:inherit;text-decoration:none}
 .fund-arrow:hover{background:rgba(0,0,0,.62)}
 .fund-arrow--prev{left:12px}.fund-arrow--next{right:12px}
 @media(max-width:760px){.fund-card{grid-template-columns:1fr}.fund-photo{min-height:300px}.fund-nums{grid-template-columns:1fr 1fr}}
+
+
+.it{font-family:"Playfair Display",serif;font-style:italic;font-weight:600;text-transform:none;letter-spacing:0;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow--new{color:var(--bg);background:var(--grad);padding:.35em .9em;border-radius:100px;letter-spacing:.12em;display:inline-block}
+/* Индекс вклада добра v2 */
+.calc2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:clamp(1.5rem,3vw,2.4rem)}
+.calc2__form{display:grid;gap:1.1rem;align-content:start}
+.c2f label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:.5rem;font-weight:600}
+.c2f input{width:100%;background:var(--deep);border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:inherit;font-size:1rem;padding:.8em 1em;transition:border-color .25s}
+.c2f input:focus{outline:none;border-color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{padding:.5em 1em;border-radius:100px;border:1px solid var(--border);background:var(--deep);color:var(--muted);font-family:inherit;font-size:.86rem;cursor:pointer;transition:.2s}
+.chip:hover{border-color:var(--accent);color:var(--text)}
+.chip.is-on{background:var(--grad);color:#0a0a0f;border-color:transparent;font-weight:600}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:.3rem}
+.seg__b{padding:.6em .3em;border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:.82rem;border-radius:9px;cursor:pointer;transition:.2s}
+.seg__b:hover{color:var(--text)}
+.seg__b.is-on{background:var(--grad);color:#0a0a0f;font-weight:600}
+.calc2__out{background:linear-gradient(160deg,rgba(240,196,106,.07),rgba(230,169,78,.05));border:1px solid var(--border);border-radius:18px;padding:1.6rem;display:flex;flex-direction:column;align-items:center;text-align:center}
+.gauge{position:relative;width:210px;height:210px;margin:.3rem auto 1.2rem}
+.gauge__svg{width:100%;height:100%;transform:rotate(-90deg)}
+.gauge__bg{fill:none;stroke:var(--border);stroke-width:13}
+.gauge__fg{fill:none;stroke:var(--accent);stroke-width:13;stroke-linecap:round;stroke-dasharray:578;stroke-dashoffset:578;transition:stroke-dashoffset 1.1s var(--ease)}
+.gauge__mid{position:absolute;inset:0;display:grid;place-content:center}
+.gauge__mid b{font-family:"Playfair Display",serif;font-style:italic;font-size:2.7rem;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gauge__mid i{font-style:normal;color:var(--dim);font-size:.8rem}
+.gauge__mid span{display:block;margin-top:.4rem;font-size:.78rem;color:var(--muted);max-width:150px;margin-inline:auto}
+.calc2__result{width:100%}
+.calc2__hint{color:var(--dim);font-size:.9rem}
+.c2-tier{font-size:.95rem;color:var(--muted);margin-bottom:1rem}
+.c2-tier b{color:var(--accent);font-weight:700}
+.c2-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1rem 0;margin-bottom:1rem}
+.c2-metrics b{display:block;font-family:"Playfair Display",serif;font-style:italic;font-size:1.4rem;color:var(--accent)}
+.c2-metrics span{font-size:.72rem;color:var(--dim)}
+.c2-spheres{display:grid;gap:.5rem;margin-bottom:1rem;text-align:left}
+.sph{display:grid;grid-template-columns:110px 1fr;align-items:center;gap:.7rem;font-size:.82rem;color:var(--muted)}
+.sph i{display:block;height:8px;border-radius:8px;background:var(--grad)}
+.c2-narr{font-size:.92rem;color:var(--text);margin-bottom:1rem;text-align:left}
+.c2-top{font-size:.9rem;color:var(--muted);margin-bottom:1.1rem}
+.c2-top b{color:var(--accent)}
+.c2-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1rem}
+.c2-cert{display:flex;gap:.6rem;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:1rem}
+.c2-cert input{flex:1;min-width:150px;background:var(--deep);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:.92rem;padding:.65em .9em}
+.c2-cert input:focus{outline:none;border-color:var(--accent)}
+/* модалка сертификата */
+.modal__box--cert{width:min(92vw,880px);height:auto;max-height:94vh;padding:1.4rem}
+.cert-wrap{width:100%;border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.cert-wrap canvas{width:100%;height:auto;display:block}
+.cert-actions{display:flex;gap:.8rem;justify-content:center;margin-top:1.2rem;flex-wrap:wrap}
+@media(max-width:900px){.calc2{grid-template-columns:1fr}}
+@media(max-width:560px){.c2-metrics{grid-template-columns:1fr 1fr}.sph{grid-template-columns:90px 1fr}}
+

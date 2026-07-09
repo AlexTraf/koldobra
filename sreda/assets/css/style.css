@@ -356,7 +356,7 @@ a{color:inherit;text-decoration:none}
 .gauge{position:relative;width:210px;height:210px;margin:.3rem auto 1.2rem}
 .gauge__svg{width:100%;height:100%;transform:rotate(-90deg)}
 .gauge__bg{fill:none;stroke:var(--border);stroke-width:13}
-.gauge__fg{fill:none;stroke-width:13;stroke-linecap:round;stroke-dasharray:578;stroke-dashoffset:578;transition:stroke-dashoffset 1.1s var(--ease)}
+.gauge__fg{fill:none;stroke:var(--accent);stroke-width:13;stroke-linecap:round;stroke-dasharray:578;stroke-dashoffset:578;transition:stroke-dashoffset 1.1s var(--ease)}
 .gauge__mid{position:absolute;inset:0;display:grid;place-content:center}
 .gauge__mid b{font-family:"Playfair Display",serif;font-style:italic;font-size:2.7rem;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .gauge__mid i{font-style:normal;color:var(--dim);font-size:.8rem}
