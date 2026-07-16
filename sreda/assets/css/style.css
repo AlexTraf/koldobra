@@ -137,6 +137,8 @@ a{color:inherit;text-decoration:none}
   background:radial-gradient(circle at 30% 30%,rgba(143,176,255,.25),rgba(95,224,232,.1));border:1px solid var(--border)}
 .member b{display:block;margin-bottom:.25rem}
 .member span{color:var(--muted);font-size:.85rem}
+.member__ph{overflow:hidden}
+.member__ph img{width:100%;height:100%;object-fit:cover}
 
 /* dobro */
 .dobro__wrap{display:grid;grid-template-columns:1.3fr .9fr;gap:2.5rem;align-items:center;
