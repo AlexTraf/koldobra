@@ -139,6 +139,12 @@ a{color:inherit;text-decoration:none}
 .member span{color:var(--muted);font-size:.85rem}
 .member__ph{overflow:hidden}
 .member__ph img{width:100%;height:100%;object-fit:cover}
+/* о президенте */
+.pres-intro{max-width:840px;margin:0 auto 2.2rem;display:grid;gap:1.05rem}
+.pres-intro p{color:var(--muted);line-height:1.68;font-size:1.02rem}
+.president .cards+.cards{margin-top:1rem}
+.pres-mission{max-width:780px;margin:2.4rem auto 0;text-align:center;color:var(--text);font-size:1.06rem;line-height:1.6}
+.pres-mission b{color:var(--accent)}
 
 /* dobro */
 .dobro__wrap{display:grid;grid-template-columns:1.3fr .9fr;gap:2.5rem;align-items:center;
